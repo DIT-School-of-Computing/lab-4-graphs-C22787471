@@ -30,10 +30,10 @@ public class Arrays extends PApplet
 
 	public void settings()
 	{
-		size(500, 500);
+		size(1200, 500);
 
 		String[] m1 = months;
-		months[0] = "XXX";
+		//months[0] = "XXX";
 		print(m1[0]);
 		for(int i = 0; i < months.length; i ++)
 		{
@@ -89,8 +89,7 @@ public class Arrays extends PApplet
 	public void setup() {
 		colorMode(HSB);
 		background(0);
-		randomize();
-		
+		//randomize();
 		
 	}
 
@@ -115,6 +114,22 @@ public class Arrays extends PApplet
 		switch (mode) {
 			case 0:
 				background(0);
+				strokeWeight(24);
+				stroke(255);
+				strokeCap(SQUARE);
+				textAlign(BOTTOM);
+				textSize(20);
+				fill(255);
+				int numBars = months.length;
+				int barWidth = width / numBars;
+				for (int i = 0; i < numBars; i++) {
+					float barHeight = map(rainfall[i], 0, max(rainfall), 0, height);
+					float x = i * barWidth;
+					float y = height - barHeight; // Invert y-coordinate for correct bar orientation
+					fill(0, 200, 100);
+					rect(x, y, barWidth, barHeight);
+
+				}
 		}
 	}
 }
