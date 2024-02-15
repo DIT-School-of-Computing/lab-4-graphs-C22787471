@@ -19,6 +19,8 @@ public class Arrays extends PApplet
 		return d + (howFar / r1) * r2;
 	}
 
+	int mode = 0;
+
 	void randomize()
 	{
 		for (int i = 0; i < rainfall.length; i++) {
@@ -92,6 +94,12 @@ public class Arrays extends PApplet
 		
 	}
 
+	public void keyPressed() {
+		if (key >= '0' && key <= '9') {
+			mode = key - '0';
+		}
+		println(mode);
+	}
 	
 	public void draw()
 	{	
@@ -102,6 +110,11 @@ public class Arrays extends PApplet
 		{
 			float x = map1(i, 0, months.length, 0, width);
 			rect(x, height, w, -rainfall[i]);
+		}
+		
+		switch (mode) {
+			case 0:
+				background(0);
 		}
 	}
 }
