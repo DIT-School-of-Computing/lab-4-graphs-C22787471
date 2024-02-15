@@ -127,8 +127,23 @@ public class Arrays extends PApplet
 					fill(0, 150, 255);
 					rect(x, y, barWidth, barHeight);
 					fill(0);
-					text(months[i], x + barWidth/10, height);
+					text(months[i], x + barWidth/5, height);
 				}
+			case 1:
+			stroke(0);
+			line(50, height - 50, width - 50, height - 50);  // X-axis
+			line(50, height - 50, 50, 50);    
+			noFill();
+        	beginShape();
+			float xSpacing = width / (float)(rainfall.length + 1);
+        	float ySpacing = height / 120.0f;
+        	for (int i = 0; i < rainfall.length; i++) {
+            	float x = 50 + xSpacing * (i + 1);
+            	float y = height - 50 - ySpacing * rainfall[i];
+            	vertex(x, y);
+            	ellipse(x, y, 8, 8);  // Draw data points
+			}
+        	endShape();    
 		}
 	}
 }
