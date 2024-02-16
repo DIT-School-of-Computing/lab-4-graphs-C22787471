@@ -87,8 +87,8 @@ public class Arrays extends PApplet
 	}
 
 	public void setup() {
-		colorMode(HSB);
-		background(0);
+		//colorMode(HSB);
+		background(255);
 		
 	}
 
@@ -101,61 +101,57 @@ public class Arrays extends PApplet
 	
 	public void draw()
 	{	
-
 		background(0);
-		float w = width / (float)months.length;
-		for(int i = 0 ; i < months.length ;  i ++)
-		{
-			float x = map1(i, 0, months.length, 0, width);
-			rect(x, height, w, -rainfall[i]);
-		}
-		
+
 		switch (mode) {
 			case 0:{
-				background(0);
-				strokeWeight(10);
-				stroke(0);
-				strokeCap(SQUARE);
-				textAlign(BOTTOM);
-				textSize(20);
-				int numBars = months.length;
-				int barWidth = width / numBars;
-				for (int i = 0; i < numBars; i++) {
-					float barHeight = map(rainfall[i], 0, max(rainfall), 0, height);
-					float x = i * barWidth;
-					float y = height - barHeight; 
-					fill(0, 150, 255);
-					rect(x, y, barWidth, barHeight);
-					fill(0);
-					text(months[i], x + barWidth/5, height);
-				}
-			}
+				barGraph();
 				break;
-			case 1 :{
-			stroke(0);
-			line(50, height - 50, width - 50, height - 50);  // X-axis
-			line(50, height - 50, 50, 50);    
-			noFill();
-        	beginShape();
-			float xSpacing = width / (float)(rainfall.length + 1);
-        	float ySpacing = height / 120.0f;
-        	for (int i = 0; i < rainfall.length; i++) {
-            	float x = 50 + xSpacing * (i + 1);
-            	float y = height - 50 - ySpacing * rainfall[i];
-            	vertex(x, y);
-            	ellipse(x, y, 8, 8);  // Draw data points
 			}
-        	endShape();    
+			case 1:{
+				trendLine();
+				break;
+			}
+			default:{
+				print("Invalid operator");
+			}
+			
 
-			stroke(255, 0, 0);
-        	for (int i = 0; i < rainfall.length - 1; i++) {
-            	float x1 = 50 + xSpacing * (i + 1);
-            	float y1 = height - 50 - ySpacing * rainfall[i];
-            	float x2 = 50 + xSpacing * (i + 2);
-            	float y2 = height - 50 - ySpacing * rainfall[i + 1];
-            	line(x1, y1, x2, y2);
-       			}
 			}
+				
+			
 		}
+
+
+	private void barGraph() {
+		background(0);
+		strokeWeight(10);
+		stroke(0);
+		strokeCap(SQUARE);
+		textAlign(BOTTOM);
+		textSize(20);
+		int numBars = months.length;
+		int barWidth = width / numBars;
+		for (int i = 0; i < numBars; i++) {
+			float barHeight = map(rainfall[i], 0, max(rainfall), 0, height);
+			float x = i * barWidth;
+			float y = height - barHeight; 
+			fill(0, 150, 255);
+			rect(x, y, barWidth, barHeight);
+			fill(0);
+			text(months[i], x + barWidth/5, height);
+		}
+
 	}
+
+	private void trendLine() {
+		background(0);
+		stroke(255, 255, 0);
+		strokeWeight(2);
+		line(50, 450, 450, 450);
+		line(50, 50, 50, 450);
+
+	}
+
 }
+
