@@ -30,7 +30,7 @@ public class Arrays extends PApplet
 
 	public void settings()
 	{
-		size(1200, 600);
+		size(500, 500);
 
 		String[] m1 = months;
 		//months[0] = "XXX";
@@ -111,7 +111,7 @@ public class Arrays extends PApplet
 		}
 		
 		switch (mode) {
-			case 0:
+			case 0:{
 				background(0);
 				strokeWeight(10);
 				stroke(0);
@@ -129,7 +129,9 @@ public class Arrays extends PApplet
 					fill(0);
 					text(months[i], x + barWidth/5, height);
 				}
-			case 1:
+			}
+				break;
+			case 1 :{
 			stroke(0);
 			line(50, height - 50, width - 50, height - 50);  // X-axis
 			line(50, height - 50, 50, 50);    
@@ -144,6 +146,16 @@ public class Arrays extends PApplet
             	ellipse(x, y, 8, 8);  // Draw data points
 			}
         	endShape();    
+
+			stroke(255, 0, 0);
+        	for (int i = 0; i < rainfall.length - 1; i++) {
+            	float x1 = 50 + xSpacing * (i + 1);
+            	float y1 = height - 50 - ySpacing * rainfall[i];
+            	float x2 = 50 + xSpacing * (i + 2);
+            	float y2 = height - 50 - ySpacing * rainfall[i + 1];
+            	line(x1, y1, x2, y2);
+       			}
+			}
 		}
 	}
 }
