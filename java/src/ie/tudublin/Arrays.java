@@ -2,8 +2,6 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 
-
-
 public class Arrays extends PApplet
 {
 	String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
@@ -170,14 +168,14 @@ public class Arrays extends PApplet
 		float diameter = 300;
 		float lastAngle = 0;
 		float sum = 0;
+		
 		for (float number : rainfall) {
             sum += number;
         }
-		//arc(200, 200, 320, 320, 0, PI+PI, PIE);
+
 		for (int i = 0; i < months.length; i++) {
-			//float gray = map(i, 0, months.length, 0, 255);
+			fill(220);
 			float angle = map(rainfall[i], 0, sum, 0, TWO_PI);
-			//fill(gray);
 			arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(rainfall[i]));
 			lastAngle += radians(rainfall[i]);
 			
