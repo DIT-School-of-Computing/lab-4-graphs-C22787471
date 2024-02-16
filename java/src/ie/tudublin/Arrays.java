@@ -112,15 +112,15 @@ public class Arrays extends PApplet
 				trendLine();
 				break;
 			}
+			case 2:{
+				pieChart();
+				break;
+			}
 			default:{
 				print("Invalid operator");
 			}
-			
-
-			}
-				
-			
-		}
+		}		
+	}
 
 
 	private void barGraph() {
@@ -151,6 +151,38 @@ public class Arrays extends PApplet
 		line(50, 450, 450, 450);
 		line(50, 50, 50, 450);
 
+		int numPoints = months.length;
+		int pointWidth = width / numPoints;
+		for(int i = 0; i < 12; i++) {
+			float points = map(rainfall[i], 0, max(rainfall), 0, height);
+			float x = i * pointWidth;
+			float y = height - numPoints;
+			stroke(255);
+			strokeWeight(2);
+			line(x, y, pointWidth, numPoints);
+			text(months[i], x + pointWidth/5, numPoints);
+		}
+	}
+
+	private void pieChart() {
+		background(255);
+		noStroke();
+		float diameter = 300;
+		float lastAngle = 0;
+		float sum = 0;
+		for (float number : rainfall) {
+            sum += number;
+        }
+		//arc(200, 200, 320, 320, 0, PI+PI, PIE);
+		for (int i = 0; i < months.length; i++) {
+			//float gray = map(i, 0, months.length, 0, 255);
+			float angle = map(rainfall[i], 0, sum, 0, TWO_PI);
+			//fill(gray);
+			arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(rainfall[i]));
+			lastAngle += radians(rainfall[i]);
+			
+		  } 
+	
 	}
 
 }
