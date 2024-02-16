@@ -151,14 +151,16 @@ public class Arrays extends PApplet
 
 		int numPoints = months.length;
 		int pointWidth = width / numPoints;
-		for(int i = 0; i < 12; i++) {
+		for(int i = 0; i < numPoints; i++) {
 			float points = map(rainfall[i], 0, max(rainfall), 0, height);
-			float x = i * pointWidth;
-			float y = height - numPoints;
+			float x = pointWidth * (i + 1);
+			float y = height - rainfall[i];
+			point(x, y);
 			stroke(255);
 			strokeWeight(2);
 			line(x, y, pointWidth, numPoints);
-			text(months[i], x + pointWidth/5, numPoints);
+			textSize(15);
+			text(months[i], x + 50, 480, numPoints);
 		}
 	}
 
